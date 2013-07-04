@@ -15,7 +15,7 @@ class parameters(object):
     theta = np.array([1.0])
     
     #government expenditure
-    g = np.array([0.33,0.37])
+    g = np.array([0.15,0.17])
     
     #Markov process transition matrix
     P = 0.5*np.ones((2,2))

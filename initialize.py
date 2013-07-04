@@ -38,4 +38,22 @@ def InitializeValueFunction(Para):
         
     policies = np.vstack(map(V0,Para.domain))
     
-    return utilities.fitValueFunctionAndPolicies(Para.domain,policies,Para)
+    return utilities.fitValueFunctionAndPolicies(Para.domain,policies,Para),policies
+    
+def StationaryPolicyResiduals(c,state,Para,xprime = None):
+    (x,b,q),s_ = state
+    P = Para.P
+    S = len(P)
+    if xprime == None:
+        xprime = np.ones(S)*x
+    g = Para.g
+    theta = Para.theta
+    I = Para.I
+    beta= Para.beta
+    uc = Para.Uc(c)
+    Euc = P[s_,:].dot(uc)
+    l = ( g + c )/theta
+    
+    return x*uc/(beta*Euc)+b*uc - I(c,l) - xprime
+    
+    

@@ -13,11 +13,13 @@ Para = primitives.BGP_parameters()
 
 Para.theta = np.array([3.3])
 
-Para.xprime_bounds = np.array([-3.0,3.0])
+Para.g = np.array([.35,.37])
 
-Para.q_bounds = np.array([Para.Uc(2.2)/(1-Para.beta),Para.Uc(1.8)/(1-Para.beta)])
+Para.xprime_bounds = np.array([-1.,1.])
 
-Para.b_bounds = Para.xprime_bounds/(Para.q_bounds[0])
+Para.q_bounds = np.array([Para.Uc(2.1),Para.Uc(1.9)])*Para.beta/(1-Para.beta)
+
+Para.b_bounds = Para.xprime_bounds/(Para.q_bounds[1])
 
 xGrid = np.linspace(Para.xprime_bounds[0],Para.xprime_bounds[1],10)
 bGrid = np.linspace(Para.b_bounds[0],Para.b_bounds[1],10)
